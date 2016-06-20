@@ -1,9 +1,38 @@
 
 import re
 from string import punctuation
-
 from stemming.porter2 import stem
 
+
+
+def build_params(filename):
+	
+	fp = open(filename, 'r')
+
+	Xbig = []
+	y = []	
+
+	i = 0
+	for line in fp.readlines() :
+	
+		x = []
+		line = line.split(' ')
+		j = 1
+		line_len = len(line)
+		for p in line :
+
+			if j < line_len :	
+				x.append(int(p))
+			else: 
+				y.append(int(p.strip('\n')))
+			j += 1	
+		Xbig.append(x)
+		i += 1
+
+	print i
+	fp.close()
+	return {'x': Xbig, 'y': y}
+#############################
 
 def strip_punctuation(s):
 	return ''.join(c for c in s if c not in punctuation)
@@ -27,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if wordDict[word] > 20 :
+		if word is not None and wordDict[word] > 100 :
 			dictList.append(word)
 
 	return sorted(dictList)
