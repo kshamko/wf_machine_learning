@@ -3,7 +3,8 @@ from sklearn.externals import joblib
 import numpy as np
 from functions import *
 from sklearn import linear_model, datasets
-
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import SGDClassifier, Perceptron
 ########################################
 
 trainParams = build_params('model/params_train.txt')
@@ -20,9 +21,10 @@ param_grid = [
 # we create an instance of Neighbours Classifier and fit the data.
 #print logreg.fit(np.array(trainParams['x']), np.array(trainParams['y']))  
 #print logreg.score(np.array(validateParams['x']), np.array(validateParams['y']))  
+clf = Perceptron()
 
-clf = svm.NuSVC()
-print clf.fit(trainParams['x'], trainParams['y'])
+#clf = svm.NuSVC()
+print clf.fit(np.array(trainParams['x']), np.array(trainParams['y']))
 print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))  
 
 #C = [1, 5, 15, 20, 30, 1000, 10000]

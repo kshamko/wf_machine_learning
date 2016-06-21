@@ -2,12 +2,15 @@ from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised.trainers import BackpropTrainer
 from pybrain.tools.shortcuts import buildNetwork
 from pybrain.structure.modules import TanhLayer
+import cPickle as pickle
+from math import sqrt
 
 import numpy as np
 from functions import *
 
 ########################################
-
+hidden_size = 100
+epochs = 600
 trainParams = build_params('model/params_train.txt')
 
 y = []
@@ -26,7 +29,22 @@ ds = SupervisedDataSet( 1057, 4 )
 ds.setField( 'input', trainParams['x'] )
 ds.setField( 'target', y )
 
-net = buildNetwork(1057, 1500, 4, bias = True)
-trainer = BackpropTrainer( net, ds )
 
-trainer.trainUntilConvergence( verbose = True, validationProportion = 0.15, maxEpochs = 1000, continueEpochs = 10 )
+# init and train
+
+net = buildNetwork( 1057, hidden_size, 4, bias = True )
+trainer = BackpropTrainer( net,ds )
+
+print "training for {} epochs...".format( epochs )
+
+for i in range( epochs ):
+	mse = trainer.train()
+	rmse = sqrt( mse )
+	print "training RMSE, epoch {}: {}".format( i + 1, rmse )
+	
+pickle.dump( net, open('model/model_nn.pkl', 'wb' ))
+
+
+
+
+
