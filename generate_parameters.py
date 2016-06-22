@@ -40,8 +40,8 @@ with open(csv_file) as csvfile:
 
 	#shuffle(lines)
 
-	count_train = 60 * len(lines) / 100
-	count_validate = 30 * len(lines) / 100
+	count_train = 75 * len(lines) / 100
+	count_validate = 25 * len(lines) / 100
 
 	print count_train
 	print count_validate

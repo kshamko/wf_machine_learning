@@ -1,5 +1,3 @@
-"get predictions for a test set"
-
 import numpy as np
 import cPickle as pickle
 
@@ -7,43 +5,46 @@ from math import sqrt
 from pybrain.datasets.supervised import SupervisedDataSet as SDS
 from sklearn.metrics import mean_squared_error as MSE
 
-test_file = 'data/test.csv'
-model_file = 'model.pkl'
-output_predictions_file = 'predictions.txt'
+from functions import *
 
-# load model
+net = pickle.load( open( 'model/model_nn.pkl', 'rb' ))
 
-net = pickle.load( open( model_file, 'rb' ))
 
-# load data
 
-test = np.loadtxt( test_file, delimiter = ',' )
-x_test = test[:,0:-1]
-y_test = test[:,-1]
-y_test = y_test.reshape( -1, 1 )
+params_file = 'model/params_train.txt'
+fp = open(params_file, 'r')
 
-# you'll need labels. In case you don't have them...
-y_test_dummy = np.zeros( y_test.shape )
+results = {'total': 0, 'ok': 0, 'bad': 0}
 
-input_size = x_test.shape[1]
-target_size = y_test.shape[1]
-
-assert( net.indim == input_size )
-assert( net.outdim == target_size )
-
-# prepare dataset
-
-ds = SDS( input_size, target_size )
-ds.setField( 'input', x_test )
-ds.setField( 'target', y_test_dummy )
-
-# predict
-
-p = net.activateOnDataset( ds )
+for line in fp.readlines() :
 	
-mse = MSE( y_test, p )
-rmse = sqrt( mse )
+	x = []
+	line = line.split(' ')
+	j = 1
+	line_len = len(line)
+	for p in line :
 
-print "testing RMSE:", rmse
+		if j < line_len :	
+			x.append(int(p))
+		else: 
+			y = int(p.strip('\n'))
+		j += 1	
 
-np.savetxt( output_predictions_file, p, fmt = '%.6f' )
+	pred = net.activate(x)
+	res = max(enumerate(pred),key=lambda x: x[1])[0] + 1
+
+	print pred
+	print y
+	print res
+	print '\n'
+
+	results['total'] += 1
+	if res == y :
+		#if y == 3 or y == 4: print 'supplier'
+		results['ok'] += 1
+	else:
+		results['bad'] += 1
+
+print results
+print results['ok']*100.0/results['total']
+fp.close()

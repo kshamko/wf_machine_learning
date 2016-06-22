@@ -56,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if word is not None and wordDict[word] > 200 :
+		if word is not None and wordDict[word] > 500 :
 			dictList.append(word)
 
 	return sorted(dictList)
