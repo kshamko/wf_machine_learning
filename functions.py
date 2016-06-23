@@ -56,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if word is not None and wordDict[word] > 500 :
+		if word is not None and wordDict[word] > 300 :
 			dictList.append(word)
 
 	return sorted(dictList)
@@ -93,9 +93,9 @@ def stemm(text, companyA, companyB) :
 	stemmed = stemmed.replace('  ', ' ')
 	stemmed = strip_punctuation(stemmed)
 
-	to_return = '';
-	for word in stemmed.split(' '):    
-		to_return += stem(word) + ' '
+	to_return = stemmed;
+	#for word in stemmed.split(' '):    
+	#	to_return += stem(word) + ' '
 
 	return to_return
  
