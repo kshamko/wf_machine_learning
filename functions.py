@@ -104,7 +104,7 @@ def stemm(text, companyA, companyB) :
  
 ###########################
 def remove_brands(text):
-	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata']
+	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata', 'honda', 'hyundai']
 
 	for brand in brands:
 		text = text.replace(brand, '')
