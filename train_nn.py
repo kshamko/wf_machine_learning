@@ -11,6 +11,8 @@ from functions import *
 ########################################
 hidden_size = 50
 epochs = 600
+params_len = 248
+
 trainParams = build_params('model/params_train.txt')
 
 y = []
@@ -24,7 +26,7 @@ for y1 in trainParams['y']:
 	elif y1 == 4:
 		y.append([0, 0, 0 ,1])
 
-ds = SupervisedDataSet( 248, 4 )
+ds = SupervisedDataSet( params_len, 4 )
 
 ds.setField( 'input', trainParams['x'] )
 ds.setField( 'target', y )
@@ -32,7 +34,7 @@ ds.setField( 'target', y )
 
 # init and train
 
-net = buildNetwork( 248, hidden_size, 4, bias = True )
+net = buildNetwork( params_len, hidden_size, 4, bias = True )
 trainer = BackpropTrainer( net,ds )
 
 print "training for {} epochs...".format( epochs )

@@ -56,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if word is not None and wordDict[word] > 500 :
+		if word is not None and wordDict[word] > 450 :
 			dictList.append(word)
 
 	return sorted(dictList)
@@ -91,14 +91,26 @@ def stemm(text, companyA, companyB) :
 	stemmed = stemmed.replace('  ', ' ')
 	stemmed = stemmed.replace('  ', ' ')
 	stemmed = stemmed.replace('  ', ' ')
+	stemmed = remove_brands(stemmed)
 	stemmed = strip_punctuation(stemmed)
 
 	to_return = '';
 	for word in stemmed.split(' '):    
-		to_return += stem(word) + ' '
-
+		if word.find('suppl') == -1:
+			to_return += stem(word) + ' '
+		else:
+			to_return += word + ' '
 	return to_return
  
+###########################
+def remove_brands(text):
+	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata']
+
+	for brand in brands:
+		text = text.replace(brand, '')
+
+	return text
+
 def example_result(text_result):
 	result = '0'
 
