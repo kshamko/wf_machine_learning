@@ -10,8 +10,8 @@ from functions import *
 
 ########################################
 hidden_size = 50
-epochs = 800
-params_len = 251
+epochs = 15
+params_len = 362
 
 trainParams = build_params('model/params_train.txt')
 
