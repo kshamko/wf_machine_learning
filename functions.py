@@ -4,7 +4,6 @@ from string import punctuation
 from stemming.porter2 import stem
 
 
-
 def build_params(filename):
 	
 	fp = open(filename, 'r')
@@ -65,7 +64,7 @@ def dict_process(wordDict):
 
 #################################
 def save_dict_to_file(wordDict):
-	
+
 	print len(wordDict)
 
 	file_name = 'dict.txt'
@@ -94,13 +93,13 @@ def stemm(text, companyA, companyB) :
 	stemmed = remove_brands(stemmed)
 	stemmed = strip_punctuation(stemmed)
 
-	to_return = stemmed
-	#to_return = '';
-	#for word in stemmed.split(' '):    
-	#	if word.find('suppl') == -1:
-	#		to_return += stem(word) + ' '
-	#	else:
-	#		to_return += word + ' '
+	#to_return = stemmed
+	to_return = '';
+	for word in stemmed.split(' '):    
+		if word.find('suppl') == -1:
+			to_return += stem(word) + ' '
+		else:
+			to_return += word + ' '
 	return to_return
  
 ###########################

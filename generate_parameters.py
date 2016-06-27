@@ -38,10 +38,10 @@ with open(csv_file) as csvfile:
 	
 		i += 1		
 
-	#shuffle(lines)
+	shuffle(lines)
 
-	count_train = 75 * len(lines) / 100
-	count_validate = 25 * len(lines) / 100
+	count_train = 85 * len(lines) / 100
+	count_validate = 15 * len(lines) / 100
 
 	print count_train
 	print count_validate

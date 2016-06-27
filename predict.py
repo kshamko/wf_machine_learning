@@ -2,7 +2,7 @@ from sklearn import svm
 from sklearn.externals import joblib
 from functions import *
 
-clf = joblib.load('model/model.pkl') 
+clf = joblib.load('model/model_svc.pkl') 
 
 
 CompanyA = 'Tupy'
@@ -14,7 +14,7 @@ text = "~~~Tupy~~~ entered the Automotive market in 1957, when it signed a contr
 #text = "From a secular growth perspective, ~~~Delphi~~~'s mix of business contains some of the best features of suppliers such as BWA, ~~~TRW~~~, Autoliv, Harman, and JCI."
 
 
-params_file = 'model/params_test.txt'
+params_file = 'model/params_validate.txt'
 fp = open(params_file, 'r')
 
 results = {'total': 0, 'ok': 0, 'bad': 0}

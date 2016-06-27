@@ -21,8 +21,8 @@ param_grid = [
 # we create an instance of Neighbours Classifier and fit the data.
 #print logreg.fit(np.array(trainParams['x']), np.array(trainParams['y']))  
 #print logreg.score(np.array(validateParams['x']), np.array(validateParams['y']))  
-clf = Perceptron()
 
+clf = svm.SVC(C=100, gamma=0.01, kernel='rbf')
 #clf = svm.NuSVC()
 print clf.fit(np.array(trainParams['x']), np.array(trainParams['y']))
 print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))  
@@ -38,4 +38,4 @@ print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))
 #		print clf.fit(np.array(trainParams['x']), np.array(trainParams['y']))  
 #		print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))  
 
-#joblib.dump(clf, 'model/model.pkl')  
+joblib.dump(clf, 'model/model_svc.pkl')  
