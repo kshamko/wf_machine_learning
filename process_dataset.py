@@ -15,6 +15,8 @@ with open(csv_file) as csvfile:
 	i = 0
 	for row in reader:
 		stemmed = stemm(row['SENTENCES'], row['COMPANY A'], row['COMPANY B'])
+		#print stemmed + '\n'
+
 		wordDict = dict_stemmed(stemmed, wordDict)
 
 		if i % 100 == 0:
