@@ -9,9 +9,9 @@ import numpy as np
 from functions import *
 
 ########################################
-hidden_size = 50
+hidden_size = 5
 epochs = 15
-params_len = 362
+params_len = 326
 
 trainParams = build_params('model/params_train.txt')
 
