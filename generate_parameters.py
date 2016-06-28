@@ -23,13 +23,16 @@ with open(csv_file) as csvfile:
 		stemmed = stemmed.split(' ')
 
 		line = ''
+		line1 = ''
 		for word in wordDict :				
 			if word in stemmed :
 				line += str(stemmed.index(word) + 1) + ' '
 			else :
 				line += '0 '
 
-		line += example_result(row['relationship']) + '\n'
+			line1 += str(stemmed.count(word)) + ' '
+
+		line += line1 + example_result(row['relationship']) + '\n'
 		lines.append(line)
 		
 
