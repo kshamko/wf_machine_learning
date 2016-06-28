@@ -1,9 +1,10 @@
 
 import re
+from nltk.corpus import stopwords
 from string import punctuation
 from stemming.porter2 import stem
 
-
+####################################
 def build_params(filename):
 	
 	fp = open(filename, 'r')
@@ -55,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if word is not None and wordDict[word] > 300 :
+		if len(word)>1 and wordDict[word] > 350 :
 			dictList.append(word)
 
 	return sorted(dictList)
@@ -77,40 +78,45 @@ def save_dict_to_file(wordDict):
 
 	f.close()
 
+#################################
 def stemm(text, companyA, companyB) :
+	text = text.replace("~~~'s", '~~~')
 	companyA = '~~~' + companyA + '~~~'
 	companyB = '~~~' + companyB + '~~~'
 	stemmed = text.replace(companyA, 'companya ')
 	stemmed = stemmed.replace(companyB, 'companyb ')
-	stemmed = stemmed.replace('%', 'percent')
-	stemmed = stemmed.lower()
-	stemmed = re.sub("\d+", "number", stemmed)
-	stemmed = re.sub('\s+', ' ', stemmed)
-	stemmed = re.sub(r'\W*\b\w{1,2}\b', '', stemmed)
-	stemmed = stemmed.replace('  ', ' ')
-	stemmed = stemmed.replace('  ', ' ')
-	stemmed = stemmed.replace('  ', ' ')
-	stemmed = remove_brands(stemmed)
-	stemmed = strip_punctuation(stemmed)
 
-	#to_return = stemmed
+	letters_only = re.sub("[^a-zA-Z]", " ", stemmed) 
+	words = letters_only.lower().split()       
+	stops = set(stopwords.words("english")) 
+	meaningful_words = [stem_word(w) for w in words if not w in stops] 
+
+	text = " ".join( meaningful_words )
+	text = remove_brands(text)
+	return text
+
+###################################
+def stem_word(word):
 	to_return = '';
-	for word in stemmed.split(' '):    
-		if word.find('suppl') == -1:
-			to_return += stem(word) + ' '
-		else:
-			to_return += word + ' '
+
+	if word.find('suppl') == -1:
+		to_return = stem(word)
+	else:
+		to_return = word
+
 	return to_return
+
  
 ###########################
 def remove_brands(text):
-	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata', 'honda', 'hyundai']
+	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata', 'honda', 'hyundai', 'general motors', 'aston martin', 'nissan', 'tata', 'gm', 'india', 'japan', 'nvidia', 'citroen', 'kia']
 
 	for brand in brands:
 		text = text.replace(brand, '')
 
 	return text
 
+###############################
 def example_result(text_result):
 	result = '0'
 
@@ -125,6 +131,7 @@ def example_result(text_result):
 
 	return result
 
+##################################
 def show_relation(relation_num):
 	relation = 'Relation unclassified'
 
@@ -152,6 +159,32 @@ def load_dict(filename) :
 	return wordDict
 
 
+############################
+###########################
+############################
+def stemm_old(text, companyA, companyB) :
+	companyA = '~~~' + companyA + '~~~'
+	companyB = '~~~' + companyB + '~~~'
+	stemmed = text.replace(companyA, 'companya ')
+	stemmed = stemmed.replace(companyB, 'companyb ')
+	stemmed = stemmed.replace('%', 'percent')
+	stemmed = stemmed.lower()
+	stemmed = re.sub("\d+", "number", stemmed)
+	stemmed = re.sub('\s+', ' ', stemmed)
+	stemmed = re.sub(r'\W*\b\w{1,2}\b', '', stemmed)
+	stemmed = stemmed.replace('  ', ' ')
+	stemmed = stemmed.replace('  ', ' ')
+	stemmed = stemmed.replace('  ', ' ')
+	stemmed = remove_brands(stemmed)
+	stemmed = strip_punctuation(stemmed)
 
+	#to_return = stemmed
+	to_return = '';
+	for word in stemmed.split(' '):    
+		if word.find('suppl') == -1:
+			to_return += stem(word) + ' '
+		else:
+			to_return += word + ' '
+	return to_return
 
 

@@ -18,6 +18,7 @@ params_file = 'model/params_validate.txt'
 fp = open(params_file, 'r')
 
 results = {'total': 0, 'ok': 0, 'bad': 0}
+result_breakdown = {1: {'t':0, 'p':0}, 2: {'t':0, 'p':0}, 3: {'t':0, 'p':0}, 4: {'t':0, 'p':0}}
 
 for line in fp.readlines() :
 	
@@ -34,16 +35,20 @@ for line in fp.readlines() :
 		j += 1	
 
 	pred = clf.predict([x])
-
+	
+	result_breakdown[y]['t'] += 1
 	results['total'] += 1
 	if pred[0] == y :
 		#if y == 3 or y == 4: print 'supplier'
+		result_breakdown[y]['p'] += 1
 		results['ok'] += 1
 	else:
+		
 		results['bad'] += 1
 
 print results
 print results['ok']*100.0/results['total']
+print result_breakdown
 fp.close()
 
 

@@ -23,9 +23,9 @@ with open(csv_file) as csvfile:
 		stemmed = stemmed.split(' ')
 
 		line = ''
-		for word in wordDict :
+		for word in wordDict :				
 			if word in stemmed :
-				line += '1 '
+				line += str(stemmed.index(word) + 1) + ' '
 			else :
 				line += '0 '
 
