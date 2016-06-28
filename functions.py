@@ -56,7 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if len(word)>1 and wordDict[word] > 350 :
+		if len(word)>1 and wordDict[word] > 600 :
 			dictList.append(word)
 
 	return sorted(dictList)

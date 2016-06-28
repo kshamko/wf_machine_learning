@@ -11,7 +11,7 @@ trainParams = build_params('model/params_train.txt')
 validateParams = build_params('model/params_validate.txt')
 
 
-clf = svm.SVC(C=200, gamma=0.01, kernel='rbf')
+clf = svm.SVC(C=100, gamma=0.01, kernel='rbf')
 print clf.fit(np.array(trainParams['x']), np.array(trainParams['y']))
 print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))  
 
