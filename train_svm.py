@@ -22,8 +22,7 @@ param_grid = [
 #print logreg.fit(np.array(trainParams['x']), np.array(trainParams['y']))  
 #print logreg.score(np.array(validateParams['x']), np.array(validateParams['y']))  
 
-clf = svm.SVC(C=100, gamma=0.01, kernel='rbf')
-#clf = svm.NuSVC()
+clf = svm.SVC(C=150, gamma=0.008, kernel='rbf')
 print clf.fit(np.array(trainParams['x']), np.array(trainParams['y']))
 print clf.score(np.array(validateParams['x']), np.array(validateParams['y']))  
 

@@ -55,7 +55,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-		if word is not None and wordDict[word] > 300 :
+		if word is not None and wordDict[word] >350 :
 			dictList.append(word)
 
 	return sorted(dictList)
@@ -82,21 +82,28 @@ def stemm(text, companyA, companyB) :
 	companyB = '~~~' + companyB + '~~~'
 	stemmed = text.replace(companyA, 'companya ')
 	stemmed = stemmed.replace(companyB, 'companyb ')
-	stemmed = stemmed.replace('%', 'percent')
+	stemmed = stemmed.replace('%', ' percent')
 	stemmed = stemmed.lower()
-	stemmed = re.sub("\d+", "number", stemmed)
+	stemmed = re.sub("\d+", " number ", stemmed)
 	stemmed = re.sub('\s+', ' ', stemmed)
 	stemmed = re.sub(r'\W*\b\w{1,2}\b', '', stemmed)
 	stemmed = stemmed.replace('  ', ' ')
 	stemmed = stemmed.replace('  ', ' ')
 	stemmed = stemmed.replace('  ', ' ')
+
+	stemmed = stemmed.replace('sales to', 'salesto')
+	stemmed = stemmed.replace('supplier of', 'supplierof')
+
+	stemmed = stemmed.replace('number number', 'number')
+	stemmed = stemmed.replace('numbernumber', 'number')
+	stemmed = stemmed.replace('numbernumber', 'number')
 	stemmed = remove_brands(stemmed)
 	stemmed = strip_punctuation(stemmed)
 
 	#to_return = stemmed
 	to_return = '';
 	for word in stemmed.split(' '):    
-		if word.find('suppl') == -1:
+		if word.find('suppl') == -1 and word.find('custome') == -1:
 			to_return += stem(word) + ' '
 		else:
 			to_return += word + ' '
@@ -104,7 +111,7 @@ def stemm(text, companyA, companyB) :
  
 ###########################
 def remove_brands(text):
-	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata', 'honda', 'hyundai']
+	brands = ['renault', 'psa', 'toyota', 'volkswagen', 'volvo', 'audi', 'bmw', 'chrysler', 'daimler', 'fiat', 'ford', 'peugeot', 'tata', 'honda', 'hyundai', 'india', 'japan', 'nissan', 'mitsubishi', 'mahindra', 'america', 'china', 'citroen', 'kia']
 
 	for brand in brands:
 		text = text.replace(brand, '')
