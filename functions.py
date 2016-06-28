@@ -56,11 +56,7 @@ def dict_process(wordDict):
 	
 	dictList = []
 	for word in wordDict:
-<<<<<<< HEAD
-		if word is not None and wordDict[word] > 300 :
-=======
-		if len(word)>1 and wordDict[word] > 600 :
->>>>>>> svm2
+		if len(word)>1 and wordDict[word] > 300 :
 			dictList.append(word)
 
 	return sorted(dictList)
@@ -90,11 +86,6 @@ def stemm(text, companyA, companyB) :
 	stemmed = text.replace(companyA, 'companya ')
 	stemmed = stemmed.replace(companyB, 'companyb ')
 
-<<<<<<< HEAD
-	to_return = stemmed;
-	#for word in stemmed.split(' '):    
-	#	to_return += stem(word) + ' '
-=======
 	letters_only = re.sub("[^a-zA-Z]", " ", stemmed) 
 	words = letters_only.lower().split()       
 	stops = set(stopwords.words("english")) 
@@ -112,7 +103,6 @@ def stem_word(word):
 		to_return = stem(word)
 	else:
 		to_return = word
->>>>>>> svm2
 
 	return to_return
 
