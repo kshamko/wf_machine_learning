@@ -1,8 +1,12 @@
-Task: Classify releation between companies
-Algorithms: Have tried Support Vectore Machine (SVM) and Neural Network (NN) algorithms. Gaussian kernel is used for SVM.
-Linear kernek gives score of about 0.5
+##Task
+Classify releation between companies
 
-Usage:
+##Algorithms
+
+Have tried Support Vectore Machine (SVM) and Neural Network (NN) algorithms. Gaussian kernel is used for SVM. Linear kernel gives score of about 0.5
+
+##Usage
+
 To use the code one should install stemming, sklearn, pybrain, numpy, nltk extensions
 
 1. $ python process_dataset.py
@@ -18,7 +22,7 @@ This command starts classifier training. After trainig script will output params
 4. $ python predict.py (or $ python predict_nn.py )
 This will output algotithm score + some details 
 
-Basic Approach To Generate Dict:
+###Basic Approach To Generate Dict:
 
 There is just a basic description below. Please see the code for more details in each branch
 
@@ -31,15 +35,16 @@ There is just a basic description below. Please see the code for more details in
 7. Add words with occurance count more than 350 into dictionary
 8. Use dictionary to generate parameters
 
-C and Gamma seelction:
+##C and Gamma selection:
 
 Have tried classifier with different C and Gamma parameters. Best fit with C=100, Gamma=0.01
  
-Branches:
+##Branches:
 
 Main defference in branches is in a way how learning parameters are generated
 
-master: Parameters are bags of words i.e
+####master
+ Parameters are bags of words i.e
 	Sentence 1: "The cat sat on the hat"
 	Sentence 2: "The dog ate the cat and the hat"
 	From these two sentences, our vocabulary is as follows:
@@ -50,12 +55,14 @@ master: Parameters are bags of words i.e
 	Similarly, the features for Sentence 2 are: { 3, 1, 0, 0, 1, 1, 1, 1}
 	Algorithm Score: 0.68
 
-svm1: 	A bit different dict generation + parameteres just 0 (if dict word NOT in text) or 1 (if dict word in text)
+####svm1
+ 	A bit different dict generation + parameteres just 0 (if dict word NOT in text) or 1 (if dict word in text)
 	Algorithm Score: 0.69
 
 	Also NN demo is in this branch. Basically all experiments with NN has given scores from 0.5 to 0.55
 
-svm2:   Parameters respect to occurrences and order of words
+####svm2
+   Parameters respect to occurrences and order of words
 	Algorithm Score: 0.66
 	
 
