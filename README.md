@@ -32,7 +32,7 @@ There is just a basic description below. Please see the code for more details.
 7. Add words with occurance count over than 350 into dictionary
 8. Use dictionary to generate parameters
 
-##C and Gamma selection:
+##C and Gamma selection (SVM):
 
 Have tried classifier with different C and Gamma parameters. Best fit with C=100, Gamma=0.01
  
@@ -41,16 +41,23 @@ Have tried classifier with different C and Gamma parameters. Best fit with C=100
 Main defference in branches is in a way how learning parameters are generated
 
 ####master
- Parameters are bags of words i.e
-	Sentence 1: "The cat sat on the hat"
-	Sentence 2: "The dog ate the cat and the hat"
-	From these two sentences, our vocabulary is as follows:
-	{ the, cat, sat, on, hat, dog, ate, and }
-	To get our bags of words, we count the number of times each word occurs in each sentence. In Sentence 1, "the" appears twice, and "cat", "sat", "on", and "hat" each appear once, so the feature vector for Sentence 1 is:
-	{ the, cat, sat, on, hat, dog, ate, and }
-	Sentence 1: { 2, 1, 1, 1, 1, 0, 0, 0 }
-	Similarly, the features for Sentence 2 are: { 3, 1, 0, 0, 1, 1, 1, 1}
-	Algorithm Score: 0.68
+#####	Algorithm Score: 0.68
+
+Parameters are bags of words i.e
+
+Sentence 1: "The cat sat on the hat"
+
+Sentence 2: "The dog ate the cat and the hat"
+
+From these two sentences, our vocabulary is as follows:
+
+``{ the, cat, sat, on, hat, dog, ate, and }``
+
+To get our bags of words, we count the number of times each word occurs in each sentence. In Sentence 1, "the" appears twice, and "cat", "sat", "on", and "hat" each appear once, so the feature vector for Sentence 1 is:	{ the, cat, sat, on, hat, dog, ate, and }
+
+Sentence 1: { 2, 1, 1, 1, 1, 0, 0, 0 }
+Sentence 2: { 3, 1, 0, 0, 1, 1, 1, 1}
+
 
 ####svm1
  	A bit different dict generation + parameteres just 0 (if dict word NOT in text) or 1 (if dict word in text)
