@@ -41,30 +41,25 @@ Have tried classifier with different C and Gamma parameters. Best fit with C=100
 Main defference in branches is in a way how learning parameters are generated
 
 ####master
-#####	Algorithm Score: 0.68
+#####	Classifier Score: 0.68
 
-Parameters are bags of words i.e__
+Parameters are bags of words i.e  
 Sentence 1: "The cat sat on the hat"  
-Sentence 2: "The dog ate the cat and the hat"__
-
-From these two sentences, our vocabulary is as follows:
-
-``{ the, cat, sat, on, hat, dog, ate, and }``
+Sentence 2: "The dog ate the cat and the hat"  
+From these two sentences, our vocabulary is as follows:  
+``{ the, cat, sat, on, hat, dog, ate, and }``  
 
 To get our bags of words, we count the number of times each word occurs in each sentence. In Sentence 1, "the" appears twice, and "cat", "sat", "on", and "hat" each appear once, so the feature vector for Sentence 1 is:	{ the, cat, sat, on, hat, dog, ate, and }
 
-Sentence 1: { 2, 1, 1, 1, 1, 0, 0, 0 }
+Sentence 1: { 2, 1, 1, 1, 1, 0, 0, 0 }  
 Sentence 2: { 3, 1, 0, 0, 1, 1, 1, 1}
 
-
 ####svm1
- 	A bit different dict generation + parameteres just 0 (if dict word NOT in text) or 1 (if dict word in text)
-	Algorithm Score: 0.69
-
-	Also NN demo is in this branch. Basically all experiments with NN has given scores from 0.5 to 0.55
+#####	Classifier Score: 0.69
+A bit different dict generation + parameteres just 0 (if dict word NOT in text) or 1 (if dict word in text)
+Also NN demo is in this branch. Basically all experiments with NN gave scores from 0.5 to 0.55
 
 ####svm2
-   Parameters respect to occurrences and order of words
-	Algorithm Score: 0.66
-	
+#####	Classifier Score: 0.66
+Parameters generated with respect to occurrences and order of words	
 
