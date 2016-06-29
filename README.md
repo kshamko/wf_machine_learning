@@ -43,11 +43,9 @@ Main defference in branches is in a way how learning parameters are generated
 ####master
 #####	Algorithm Score: 0.68
 
-Parameters are bags of words i.e
-
-Sentence 1: "The cat sat on the hat"
-
-Sentence 2: "The dog ate the cat and the hat"
+Parameters are bags of words i.e__
+Sentence 1: "The cat sat on the hat"  
+Sentence 2: "The dog ate the cat and the hat"__
 
 From these two sentences, our vocabulary is as follows:
 
