@@ -9,17 +9,21 @@ Have tried Support Vectore Machine (SVM) and Neural Network (NN) algorithms. Gau
 
 To use the code one should install stemming, sklearn, pybrain, numpy, nltk extensions
 
-1. $ python process_dataset.py
+1. ``$ python process_dataset.py``
+
 This command will generate dictionary to build ML parameters from. 
 
-2. $ python generate_parameters.py
+2. ``$ python generate_parameters.py``
+
 This command generates parameters to feed to classifier. Each branch has it's own way of the generation.
 Common thing is just splitting entire dataset into 2 parts: learning parameters and validation ones in proportion of 85% / 15%
  
-3. $ python train_svm.py (or $ python train_nn.by)
+3. ``$ python train_svm.py (or $ python train_nn.by)``
+
 This command starts classifier training. After trainig script will output params of classifier and algorithm score
 
-4. $ python predict.py (or $ python predict_nn.py )
+4. ``$ python predict.py (or $ python predict_nn.py )``
+
 This will output algotithm score + some details 
 
 ###Basic Approach To Generate Dict:
